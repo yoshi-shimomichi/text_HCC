@@ -1,0 +1,30 @@
+current directory: /Users/shimotsumichiyoshihiro/test_HCC/vendor/bundle/ruby/3.2.0/gems/psych-5.1.2/ext/psych
+/Users/shimotsumichiyoshihiro/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+checking for yaml.h... yes
+checking for yaml_get_version() in -lyaml... yes
+creating Makefile
+
+current directory: /Users/shimotsumichiyoshihiro/test_HCC/vendor/bundle/ruby/3.2.0/gems/psych-5.1.2/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20231229-26231-ozj3ny sitelibdir\=./.gem.20231229-26231-ozj3ny clean
+cd libyaml && /Library/Developer/CommandLineTools/usr/bin/make clean
+/bin/sh: line 0: cd: libyaml: No such file or directory
+make: [clean-so] Error 1 (ignored)
+
+current directory: /Users/shimotsumichiyoshihiro/test_HCC/vendor/bundle/ruby/3.2.0/gems/psych-5.1.2/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20231229-26231-ozj3ny sitelibdir\=./.gem.20231229-26231-ozj3ny
+compiling psych.c
+compiling psych_emitter.c
+compiling psych_parser.c
+compiling psych_to_ruby.c
+compiling psych_yaml_tree.c
+linking shared-object psych.bundle
+
+current directory: /Users/shimotsumichiyoshihiro/test_HCC/vendor/bundle/ruby/3.2.0/gems/psych-5.1.2/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20231229-26231-ozj3ny sitelibdir\=./.gem.20231229-26231-ozj3ny install
+/usr/bin/install -c -m 0755 psych.bundle ./.gem.20231229-26231-ozj3ny
+
+current directory: /Users/shimotsumichiyoshihiro/test_HCC/vendor/bundle/ruby/3.2.0/gems/psych-5.1.2/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20231229-26231-ozj3ny sitelibdir\=./.gem.20231229-26231-ozj3ny clean
+cd libyaml && /Library/Developer/CommandLineTools/usr/bin/make clean
+/bin/sh: line 0: cd: libyaml: No such file or directory
+make: [clean-so] Error 1 (ignored)
