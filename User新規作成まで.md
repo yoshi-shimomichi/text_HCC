@@ -6,5 +6,6 @@
 # 追記
 gem 'socery'
 #
+// docker compose exec web bash
 // bundle install
 

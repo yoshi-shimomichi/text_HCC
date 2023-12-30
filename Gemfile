@@ -52,7 +52,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # 追加
-gem 'sorcery'   #ログイン・ログアウト・パスワード再設定
+gem "sorcery"   #ログイン・ログアウト・パスワード再設定
 
 
 group :development, :test do
