@@ -1,0 +1,17 @@
+<header>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="flex-left">
+      <%= link_to '/', class: 'navbar-brand' do %>
+        Home Care Community
+      <% end %>
+    </div>
+    <div class="flex-right">
+      <%= link_to '新規投稿', '#', class: 'link-dark' %>
+      <%= link_to 'マイページ', "#", class: 'link-dark' %>
+      <%= link_to t('header.logout'), '#', data: { turbo_method: :delete },class: 'link-dark' %>
+      <%= link_to '通知', "#", class: 'link-dark' %>
+    </div>
+  </div>
+  </nav>
+</header>
