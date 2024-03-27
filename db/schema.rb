@@ -10,9 +10,104 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_13_075133) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_27_123535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "care_people", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "age"
+    t.integer "sex", default: 0
+    t.integer "care_level", default: 0
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_care_people_on_user_id"
+  end
+
+  create_table "comment_favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comment_favorites_on_comment_id"
+    t.index ["user_id", "comment_id"], name: "index_comment_favorites_on_user_id_and_comment_id", unique: true
+    t.index ["user_id"], name: "index_comment_favorites_on_user_id"
+  end
+
+  create_table "comment_notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "comment_id", null: false
+    t.integer "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comment_notifications_on_comment_id"
+    t.index ["visited_id"], name: "index_comment_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_comment_notifications_on_visitor_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.text "body", null: false
+    t.string "comment_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "post_favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_favorites_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_post_favorites_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_post_favorites_on_user_id"
+  end
+
+  create_table "post_notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "post_id", null: false
+    t.integer "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_notifications_on_post_id"
+    t.index ["visited_id"], name: "index_post_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_post_notifications_on_visitor_id"
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "post_type", null: false
+    t.text "body", null: false
+    t.string "post_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -22,7 +117,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_13_075133) do
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "care_people", "users"
+  add_foreign_key "comment_favorites", "comments"
+  add_foreign_key "comment_favorites", "users"
+  add_foreign_key "comments", "comments", column: "parent_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "post_favorites", "posts"
+  add_foreign_key "post_favorites", "users"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
+  add_foreign_key "posts", "users"
 end

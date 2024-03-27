@@ -1,0 +1,2 @@
+class PostNotification < ApplicationRecord
+end

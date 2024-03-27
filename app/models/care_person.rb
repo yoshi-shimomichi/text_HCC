@@ -1,0 +1,2 @@
+class CarePerson < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PostNotificationsController < ApplicationController
+end
