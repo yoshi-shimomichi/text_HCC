@@ -1,0 +1,36 @@
+<nav id="sidebarMenu" class="d-md-block bg-light sidebar" style="font-size: 16px">
+  <div class="position-sticky pt-3 sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <%= link_to profile_path, class: "nav-link" do %>
+          <%= t('sideber.profile') %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to questions_profile_path, class: "nav-link" do %>
+          <%= t('sideber.post_question') %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to tweets_profile_path, class: "nav-link" do %>
+          <%= t('sideber.post_tweet') %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to comments_profile_path, class: "nav-link" do %>
+          <%= t('sideber.comment') %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to favorite_posts_profile_path, class: "nav-link" do %>
+          <%= t('sideber.favorite_post') %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to favorite_comments_profile_path, class: "nav-link" do %>
+          <%= t('sideber.favorite_comment') %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,45 @@
+<% comments.each do |comment| %>
+<div class="col-10 mb-4">
+  <div id="comment-<%= comment.id %>">
+    <div class='card mb-3'>
+      <div class="card-header d-flex">
+        <div class="mx-1">
+          <%= image_tag comment.user.avatar.url, class: 'post_index_image' %>
+        </div>
+        <div class="col-2 mx-1">
+          <ul class="list-inline">
+            <li><%= comment.user.name %></li>
+            <li><%= l comment.created_at, format: :short %></li>
+          </ul>
+        </div>
+        <div class="ms-auto">
+          <% if current_user&.own?(comment) %>
+            <%= link_to t('helpers.submit.detail'), post_path(comment.post), class: 'btn btn-primary btn-sm' %>
+            <%= link_to edit_post_comment_path(comment.post, comment), class: 'edit-comment-link' do %>
+              <div class="btn btn-success btn-sm"><%= t('helpers.submit.edit') %></div>
+            <% end %>
+            <%= link_to t('helpers.submit.delete'),
+                      post_comment_path(comment.post, comment),
+                      class: 'btn btn-danger btn-sm',
+                      data: { turbo_method: :delete, 
+                      turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
+          <% else %>
+            <div class="d-flex">
+              <%= link_to t('helpers.submit.detail'), post_path(comment.post), class: 'btn btn-primary btn-sm mx-3' %>
+              <%= render 'comment_favorites/comment_favorite_buttons', { comment: comment } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= raw Rinku.auto_link(simple_format(h(comment.body)), :urls, 'target="_black"') %>
+        <% if comment.comment_image.present? %>
+          <%= link_to comment.comment_image.url, "data-lightbox": comment.comment_image do %>
+            <%= image_tag comment.comment_image.to_s, width: '100' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

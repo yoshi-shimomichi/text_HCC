@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "favorite_remove-button-for-comment-#{@comment.id}" do %>
+  <%= render 'comment_favorites/comment_favorite_join', { comment: @comment } %>
+<% end %>

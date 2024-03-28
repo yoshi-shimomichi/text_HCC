@@ -1,0 +1,50 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+      post: '投稿'
+    attributes:
+      user:
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+        name: 'ユーザー名'
+        bio: '自己紹介文'
+        avatar: アバター
+      care_person:
+        age: 年齢
+        sex: 性別
+        care_level: 要介護度
+        bio: 被介護者情報
+      post:
+        post_type: 投稿タイプ
+        body: 本文
+        name: タグ
+        post_image: 画像
+      comment:
+        body: コメント
+  enums:
+    post:
+      post_type:
+        question: 質問
+        tweet: つぶやき
+    post_notification:
+      action:
+        comment: コメント
+        favorite: お気に入り
+    care_person:
+      sex:
+        no_enter_sex: 未登録
+        male: 男性
+        female: 女性
+      care_level:
+        no_enter_care_level: 未登録
+        self: 自立
+        support_1: 要支援1
+        support_2: 要支援2
+        care_1: 要介護1
+        care_2: 要介護2
+        care_3: 要介護3
+        care_4: 要介護4
+        care_5: 要介護5
+        

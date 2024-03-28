@@ -1,0 +1,5 @@
+<% @tags.each do |tag| %>
+  <li class="list-group-item bg-white transition-all hover bg-gray-200 focus-ring ring-gray-500" role="option" data-autocomplete-value="<%= tag.id %>" data-autocomplete-label="<%= tag.name %>">
+    <%= tag.name %>
+  </li>
+<% end %>

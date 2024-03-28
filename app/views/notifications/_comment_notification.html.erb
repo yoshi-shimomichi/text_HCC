@@ -1,0 +1,23 @@
+<div class="col-md-6 mx-auto">
+  <div class="form-inline">
+    <span>
+      <strong>
+        <%= notification.visitor.name %>
+      </strong>
+      さんが、あなたの投稿<br>
+      <% case notification.action.to_sym %>
+        <% when :favorite then %>
+          <%= link_to 'あなたのコメント', notification.comment.post, style: "font-weight: bold;" %><br>
+          をお気に入り登録しました
+        <% when :comment then %>
+          <%= link_to 'あなたのコメント', notification.comment.post, style: "font-weight: bold;" %><br>
+          に返信しました
+      <% end %>
+    </span>
+  </div>
+  <div class="small text-muted">
+    <%= time_ago_in_words(notification.created_at).upcase %>
+    <%= link_to t('post_notifications.index.delete'), checked_comment_notification_path(notification), data: { turbo_method: :patch }, class:"btn btn-light fas fa-trash float-end border" %>
+  </div>
+  <hr>
+</div>

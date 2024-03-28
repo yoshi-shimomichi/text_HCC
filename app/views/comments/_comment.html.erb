@@ -1,0 +1,47 @@
+<% post.comments.each do |comment| %>
+  <% if !comment.parent_id %>
+  <div class="card mb-5" id="comment-<%= comment.id %>">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <%= image_tag comment.user.avatar.url, width: '50', height: '50'  %>
+      <div class="col">
+        <ul class="list-inline">
+          <li><%= comment.user.name %></li>
+          <li><%= l comment.created_at, format: :short %></li>
+        </ul>
+      </div>
+      <% if current_user&.own?(comment) %>
+        <div class="text-end">
+          <%= link_to edit_post_comment_path(comment.post, comment), class: 'edit-comment-link' do %>
+            <div class="btn btn-success btn-sm"><%= t('helpers.submit.edit') %></div>
+          <% end %>
+          <%= link_to t('helpers.submit.delete'),
+                      post_comment_path(comment.post, comment),
+                      class: 'btn btn-danger btn-sm',
+                      data: { turbo_method: :delete, 
+                      turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
+        </div>
+      <% else %>
+        <%= render 'comment_favorites/comment_favorite_buttons', { comment: comment } %>
+      <% end %>
+    </div>
+    <div class="card-body mb-1">
+      <%= raw Rinku.auto_link(simple_format(h(comment.body)), :urls, 'target="_black"') %>
+      <% if comment.comment_image.present? %>
+        <%= link_to comment.comment_image.url, "data-lightbox": comment.comment_image do %>
+          <%= image_tag comment.comment_image.to_s, width: '100' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <%= link_to new_post_comment_path(post, comment, parent_id: comment.id), class: 'reply-comment-link' do %>
+        <div class="btn btn-success btn-sm float-end"><%= t('helpers.submit.reply') %></div>
+      <% end %>
+    </div>
+  <% end %>
+    <% if comment.replies.any?%>
+      <% comment.replies.each do |reply| %>
+        <%= render partial: 'comments/reply', locals: { reply: reply } %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

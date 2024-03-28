@@ -6,6 +6,10 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
+import "./custom/preview"
+import "./custom/autocomplete/@hotwired--stimulus"
+import "./custom/autocomplete/jquery"
+import "./custom/autocomplete/stimulus-autocomplete"
 
 $(function(){
     alert("jQuery 動いた！")

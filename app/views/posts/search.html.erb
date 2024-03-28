@@ -1,0 +1,15 @@
+<% content_for(:title, t('.title')) %>
+<div class="container pt-3">
+  <%= render 'search_form' %>
+  <div class="row">
+    <div class="col-12">
+      <div class="row justify-content-center">      
+        <% if @posts.present? %>
+          <%= render @posts %>
+        <% else %>
+          <p class="text-center"><%= t('.no_result') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

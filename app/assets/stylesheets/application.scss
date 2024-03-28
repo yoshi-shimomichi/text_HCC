@@ -1,14 +1,75 @@
 @import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 body{
-    background-color: #dfe2ea;
-    color: #9cc9e5;
-}
-
-p{
-    color: #101841;
+    font-size: 18px;
+    background-color: #fef7f0;
 }
 
 header{
-    background: #d3e9d0;
+    background: #B2FFAB;
+}
+
+.footer{
+    text-align: right;
+}
+
+.bio{
+    min-height: 100px;
+}
+
+.preview-image{
+    width: 300px;
+    height: 300px;
+}
+
+.post_index_image{
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+}
+
+.post_type_question{
+    background-color: #FFA859;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+}
+
+.post_type_tweet{
+    background-color: #59EBFF;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.post_show_image{
+    width: auto;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+.required{
+    background-color: #ee3333;
+    color: white;
+    padding: 2px; 
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#edit_image_prev{
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+#image_prev img{
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.notice{
+    color: red;
 }

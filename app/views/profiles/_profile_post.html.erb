@@ -1,0 +1,57 @@
+<% posts.each do |post| %>
+<div class="col-10 mb-4">
+  <div id="post-id-<%= post.id %>">
+    <div class='card mb-3'>
+      <div class="card-header d-flex">
+        <div class="mx-1">
+          <%= image_tag post.user.avatar.url, class: 'post_index_image' %>
+        </div>
+        <div class="col-2 mx-1">
+          <ul class="list-inline">
+            <li><%= post.user.name %></li>
+            <li><%= l post.created_at, format: :short %></li>
+          </ul>
+        </div>
+        <div class="col">
+          <% if post.question? %>
+            <span class="post_type_question"><%= post.post_type_i18n %></span>
+          <% else %>
+            <span class="post_type_tweet"><%= post.post_type_i18n %></span>
+          <% end %>
+        </div>
+        <div class="ms-auto">
+          <% if current_user&.own?(post) %>
+            <%= link_to t('helpers.submit.detail'), post_path(post), class: 'btn btn-primary btn-sm' %>
+            <%= link_to t('helpers.submit.edit'), edit_post_path(post), class: 'btn btn-success btn-sm' %>
+            <%= link_to t('helpers.submit.delete'),
+                      post_path(post),
+                      class: 'btn btn-danger btn-sm',
+                      data: { turbo_method: :delete, 
+                      turbo_confirm: t('helpers.submit.detail_comfirm') }  %>
+          <% else %>
+            <div class="d-flex">
+              <%= link_to t('helpers.submit.detail'), post_path(post), class: 'btn btn-primary btn-sm mx-3' %>
+              <%= render 'post_favorites/post_favorite_buttons', { post: post } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= raw Rinku.auto_link(simple_format(h(post.body)), :urls, 'target="_black"') %>
+        <% if post.post_image.present? %>
+          <%= link_to post.post_image.url, "data-lightbox": post.post_image do %>
+            <%= image_tag post.post_image.to_s, width: '100' %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <% if post.tags.present? %> 
+          <% post.tags.each do |tag| %>
+            <span class="badge rounded-pill bg-primary text-white"><%= tag.name %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,32 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1><%= t('users.new.title') %></h1>
+      <%= form_with model: @user , local: true do |f| %>
+        <%= render 'shared/error_messages' , object: f.object %>
+        <div class="mb-3">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control', placeholder:'30文字以内で入力してください' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control', placeholder:'4文字以上で入力してください' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <%= f.fields_for :care_person do |c| %>
+          <%= c.hidden_field :age %>
+          <%= c.hidden_field :bio %>
+        <% end %>
+        <%= f.submit t('helpers.submit.create') , class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

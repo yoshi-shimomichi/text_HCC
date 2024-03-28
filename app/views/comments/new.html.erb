@@ -1,0 +1,42 @@
+<% content_for(:title, t('comments.reply_new.title')) %>
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1><%= t('comments.reply_new.title') %></h1>
+      <%= form_with model:[@post, @comment_reply], local: true do |f|%>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="mb-3">
+          <%= f.label :body, class: "mb-1" %><span class="required"><%= t('default.required') %></span>
+          <%= f.text_area :body, class:"form-control", rows:'3' %>
+        </div>
+        <div class="mb-3">
+          <%= f.file_field :comment_image, class: "form-control mb-3", accept: 'image/*' %>
+          <%= f.hidden_field :comment_image_cache %>
+          <%= f.hidden_field :parent_id, value: @comment_reply.parent_id %>
+        </div>
+        <div class="flex justify-end text-xs mt-1">
+          <%= link_to t('helpers.submit.cancel'), post_path(@comment_reply.post), class: 'btn' %>
+          <%= f.submit t('helpers.submit.reply'), class:"ml-2 btn btn-primary faort-end" %>
+        </div>
+        <div id="image_prev"></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-10 col-lg-8 mx-auto">
+    <h3>コメント先</h3>
+    <div class="card mb-5" id="comment-<%= @comment.id %>">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <%= image_tag @comment.user.avatar.url, width: '50', height: '50'  %>
+        <div class="col">
+          <ul class="list-inline">
+            <li><%= @comment.user.name %></li>
+            <li><%= l @comment.created_at, format: :short %></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body mb-1">
+        <%= simple_format(@comment.body) %>
+      </div>
+    </div>
+  </div>
+</div>

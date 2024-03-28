@@ -1,0 +1,47 @@
+<% content_for(:title, t('.title')) %>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-2">
+      <%= render 'shared/sideber' %>
+    </div>
+    <div class="col-9">
+      <div class="container pt-3">
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <h1 class="float-left mb-5"><%= t('.title') %></h1>
+            <%= form_with model: @care_person, url: care_persons_path, method: :put do |f| %>
+              <%= render 'shared/error_messages', object: f.object %>
+              <div class="row">
+                <div class="row mb-3">
+                  <div class="col">
+                    <%= f.label :age, class: "form-label" %>
+                    <%= f.number_field :age, class: "form-control-sm" %>歳
+                  </div>
+                  <div class="col">
+                    <%= f.label :sex %>
+                    <%= f.radio_button :sex, :no_enter_sex %>
+                    <%= f.label :sex_no_enter_sex, "未登録" %>
+                    <%= f.radio_button :sex, :male %>
+                    <%= f.label :sex_male, "男性" %>
+                    <%= f.radio_button :sex, :female %>
+                    <%= f.label :sex_female, "女性" %>
+                  </div>
+                </div>
+              <div class="row mb-3">
+                <div class="col">
+                  <%= f.label :care_level %>
+                  <%= f.collection_select :care_level, CarePerson.care_levels.keys.map { |key| [I18n.t("enums.care_person.care_level.#{key}"), key] }, :last, :first %>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <%= f.label :bio %>
+              <%= f.text_area :bio, class: "form-control", rows:"3" %>
+            </div>
+          <div> 
+          <%= f.submit nil, class: "btn btn-primary float-end" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

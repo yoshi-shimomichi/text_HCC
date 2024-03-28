@@ -1,0 +1,161 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 投稿
+      update: 更新
+      edit: 編集
+      detail: 詳細
+      comment: コメント
+      reply: 返信
+      delete: 削除
+      delete_comfirm: 削除しますか？
+      cancel: キャンセル
+      search: 検索
+    label:
+      email: メールアドレス
+      password: パスワード
+  default:
+    required: 必須
+  enums:
+    post:
+      post_type:
+        question: 質問
+        tweet: つぶやき
+    care_person:
+      sex:
+        no_enter_sex: 未登録
+        male: 男性
+        female: 女性
+      care_level:
+        no_enter_care_level: 未登録
+        self: 自立
+        support_1: 要支援1
+        support_2: 要支援2
+        care_1: 要介護1
+        care_2: 要介護2
+        care_3: 要介護3
+        care_4: 要介護4
+        care_5: 要介護5
+  header:
+    login: ログイン
+    create_user: ユーザー登録 
+    logout: ログアウト
+    create_post: 新規投稿
+    mypage: マイページ
+    notification: 通知
+  sideber:
+    profile: プロフィール
+    care_person: 要介護者
+    post_question: 質問投稿
+    post_tweet: つぶやき投稿
+    comment: コメント
+    favorite_post: お気に入り投稿
+    favorite_comment: お気に入りコメント 
+  users:
+    new:
+      title: ユーザー登録
+      to_login_page: ログインページへ
+    create:
+      success: ユーザー登録が完了しました
+      failure: ユーザー登録できませんでした
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      to_register_page: 登録ページへ
+      password_forget: パスワードをお忘れの方はこちら
+    create:
+      success: ログインしました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    edit:
+      title: パスワードリセット
+      button: 更新する
+    create:
+      success: パスワードリセットメールを送信しました
+    update:
+      success: パスワードを変更しました
+      failure: パスワードが変更されませんでした
+    send_mail: パスワードリセット
+  profiles:
+    show:
+      title: プロフィール
+    edit:
+      title: プロフィール編集
+    update:
+      title: プロフィール編集
+      success: ユーザーを更新しました
+      failure: ユーザーを更新出来ませんでした
+    questions:
+      title: 質問投稿一覧
+      no_result: 投稿はありません
+    tweets:
+      title: つぶやき投稿一覧
+      no_result: 投稿はありません
+    comments:
+      title: コメント一覧
+      no_result: コメントはありません
+    favorite_posts:
+      title: お気に入り投稿
+      no_result: お気に入りした投稿がありません
+    favorite_comments:
+      title: お気に入り投稿
+      no_result: お気に入りしたコメントがありません
+  care_persons:
+    show:
+      title: 被介護者ページ
+    edit:
+      title: 被介護者情報編集ページ
+  posts:
+    index:
+      title: 投稿一覧
+      no_result: 掲示板がありません
+    new:
+      title: 新規投稿作成
+    create:
+      success: 投稿しました
+      failure: 投稿出来ませんでした
+    show:
+      title: 投稿詳細
+      body: コメント
+    edit:
+      title: 投稿編集
+    update:
+      success: 投稿を更新しました
+      failure: 投稿を更新出来ませんでした
+    delete:
+      comfirm: 削除しますか
+      success: 投稿を削除しました
+    search:
+      title: 検索結果
+      no_result: 検索結果はありませんでした
+  comments:
+    create:
+    edit:
+      title: コメント編集
+    update:
+      success: コメントを編集しました
+    delete:
+      comfirm: 削除しますか
+    reply_new:
+      title: コメント返信
+  post_notifications:
+    index:
+      title: 通知一覧
+      delete: 通知クリア
+      all_delete: 全通知をクリア
+      all_delete_comfirm: 通知を全てクリアにしますか？
+      no_result: 通知はありません
+  pages:
+    how_to:
+      title: 使い方
+    privacy_policy:
+      title: プライバシーポリシー
+    term_of_service:
+      title: 利用規約

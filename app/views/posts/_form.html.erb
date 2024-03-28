@@ -1,0 +1,29 @@
+<%= form_with model: @post, id: 'new_post' do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="mb-3">
+      <div>
+        <%= f.label :post_type, class: 'col-3'%><span class="required"><%= t('default.required') %></span>
+      </div>
+      <%= f.radio_button :post_type, :question %>
+      <%= f.label :post_type_question, "質問" %>
+      <%= f.radio_button :post_type, :tweet %>
+      <%= f.label :post_type_tweet, "つぶやき" %>
+      <%= f.submit '投稿', class: "btn btn-primary float-end" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :body, class: 'col-2'%><span class="required"><%= t('default.required') %></span>      
+      <%= f.text_area :body, class: "form-control", row: "10", style: "height: 200px" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :name %><span style='font-size : 12px'>（複数つける場合はスペースで区切ってください）</span>
+      <%= f.text_field :name, value: @tag_list, class: 'form-control'%>
+    </div>
+    <div class="mb-3">
+      <%= f.label :post_image %>
+      <p><%= f.check_box :remove_post_image %>画像を削除する</p>
+      <%= f.file_field :post_image, class: "form-control mb-3", id: 'post_prev', accept: 'image/*' %>
+      <%= f.hidden_field :post_image_cache %>
+    </div>
+    <div id="image_prev"></div>
+<% end %>
+<%= image_tag post.post_image.url, id: 'edit_image_prev' if post.post_image.present? %>
