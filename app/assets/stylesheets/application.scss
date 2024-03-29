@@ -2,17 +2,46 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+//960px
+html{
+    height: 100%;
+}
+
 body{
-    font-size: 18px;
-    background-color: #fef7f0;
+    background-color: #f0f0f0;
+    display: flex;
+    height: 100%;
+}
+
+.header_left{
+    background: #B2FFAB;
+    min-width: 250px;
 }
 
 header{
-    background: #B2FFAB;
+    text-align: center;
+    height: 100%;
 }
 
-.footer{
+.app-title{
+    height: 30%;
+    display: inline-block;
+    vertical-align: middle;
+    
+}
+
+.header_search{
+    height: 70%;
+}
+
+.footer_right{
     text-align: right;
+    background: #B2FFAB;
+    max-width: 300px;
+}
+
+main{
+    width: 100%;
 }
 
 .bio{
@@ -72,4 +101,8 @@ header{
 
 .notice{
     color: red;
+}
+
+@media screen and (max-width: 960px){
+
 }

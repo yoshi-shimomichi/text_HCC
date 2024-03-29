@@ -15,13 +15,25 @@
   </head>
   
   <body>
+    <div class="header_left">
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
+    </div>
+    <main>
     <%= render 'shared/flash_messages'%>
     <%= yield %>
+    </main>
+    <div class="footer_right">
+    <% if logged_in? %>
     <%= render 'shared/footer' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+  </div>
+
+    </div>
   </body>
 </html>

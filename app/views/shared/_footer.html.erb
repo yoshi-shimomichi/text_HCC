@@ -1,9 +1,17 @@
 <footer class='footer mt-auto py-3'>
   <div class='container'>
-    <div class='fixed-bottom  bg-dark-subtle '>
-        <%= link_to '利用規約', page_path("term_of_service"), class:'link-dark text-decoration-none' %>
-        <%= link_to 'プライバシーポリシー', page_path("privacy_policy"), class:'link-dark text-decoration-none' %>
-      </div>
+    <div class=''>
+        <%= link_to t('header.create_post'), new_post_path, class: 'link-dark text-decoration-none' %>
+        <%= link_to t('header.mypage'), profile_path, class: 'link-dark text-decoration-none' %>
+        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete },class: 'link-dark text-decoration-none' %>
+        <%= link_to post_notifications_path, class: 'link-dark text-decoration-none' do %>
+          <% if unchecked_notifications.any? %>
+            <i class="fas fa-bell notice"></i>
+          <% else %>
+            <i class="far fa-bell"></i>
+          <% end %>
+          通知一覧
+        <% end %>
     </div>
   </div>
 </footer>
