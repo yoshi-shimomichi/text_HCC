@@ -27,11 +27,20 @@ header{
     height: 30%;
     display: inline-block;
     vertical-align: middle;
-    
+    padding-top: 60px;
 }
 
 .header_search{
     height: 70%;
+}
+
+.search_form{
+    width: auto;
+}
+
+.search_select{
+    width: 75%;
+    appearance: auto;
 }
 
 .footer_right{
