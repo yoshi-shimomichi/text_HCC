@@ -1,34 +1,28 @@
-<div class="col-10 mb-4">
-  <div id="post-id-<%= post.id %>">
-    <div class='card mb-3'>
-      <div class="card-header d-flex">
-        <%= image_tag post.user.avatar.url, class: 'post_index_image' %>
-        <div class="col-2">
-          <ul class="list-inline">
-            <li><%= post.user.name %></li>
-            <li><%= l post.created_at, format: :short %></li>
-          </ul>
-        </div>
-        <div class="col-2">
-          <% if post.question? %>
-            <span class="post_type_question"><%= post.post_type_i18n %></span>
-          <% else %>
-            <span class="post_type_tweet"><%= post.post_type_i18n %></span>
-          <% end %>
-        </div>
-      </div>
-      <div class="card-body">
-        <%= post.body.truncate(30) %>
-      </div>
-      <div class="card-footer">
-        <% if post.tags.present? %> 
-          <% post.tags.each do |tag| %>
-            <span class="badge rounded-pill bg-primary text-white"><%= tag.name %></span>
-          <% end %>
-        <% end %>
-      </div>
-        <%= link_to post_path(post), class: 'stretched-link text-decoration-none link-dark' do %>
-        <% end %>
-    </div>
+<%= link_to post_path(post), class: 'text-decoration-none' do %>
+<div id="post-id-<%= post.id %>", class="post_content">
+
+  <div class='post_header'>
+    <% if post.question? %>
+      <span class=""><%= post.post_type_i18n %></span>
+    <% else %>
+      <span class=""><%= post.post_type_i18n %></span>
+    <% end %>
+    <%= time_ago_in_words(post.created_at).upcase %>前
   </div>
+  <div class="post_body">
+    <%= post.body.truncate(50) %>
+    <% if post.post_image.present? %>
+        <%= image_tag post.post_image.url, class: 'post_index_image' %>
+    <% end %>
+  </div>
+  <div class="post_tag_list fas fa-tags">
+    <% if post.tags.present? %> 
+      <% post.tags.each do |tag| %>
+        <span class="post_tag"><%= tag.name %></span>
+      <% end %>
+    <% end %>
+  </div>
+  
 </div>
+
+<% end %>

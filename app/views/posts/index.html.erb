@@ -1,14 +1,8 @@
-<div class="container pt-3">
-  <div class="row">
-    <div class="col-12">
-      <div class="row justify-content-center">
-        <% if @posts.present? %>
-          <%= render @posts %>
-        <% else %>
-          <p><%= t('posts.index.no_result') %></p>
-        <% end %>
-      </div>
-      <%= paginate @posts, theme: 'bootstrap-5' %>
-    </div>
-  </div>
-</div>
+
+  <% if @posts.present? %>
+    <%= render @posts %>
+  <% else %>
+    <p><%= t('posts.index.no_result') %></p>
+  <% end %>
+  <%= paginate @posts, theme: 'bootstrap-5' %>
+
