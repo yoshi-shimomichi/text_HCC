@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     skip_before_action :require_login, only: %i[index show search autocomplete_word]
   
     def index
-       @posts = Post.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
+       @posts = Post.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     end
   
     def show

@@ -25,11 +25,13 @@ body{
 header{
     text-align: center;
     height: 100%;
-    margin-top: 40%;
+    margin-top: 80px;
+    width: 250px;
+    position: fixed;
 }
 
 .app_title{
-    height: 30%;
+    margin-bottom: 50px;
     display: inline-block;
     vertical-align: middle;
     color: white;
@@ -50,7 +52,6 @@ header{
 
 .footer_right{
     text-align: right;
-    background: #B2FFAB;
     width: 200px;
     height: 100%;
     display: block;
@@ -58,6 +59,7 @@ header{
 
 footer{
     height: 100%;
+    position: fixed;
 }
 
 .footer_list{
@@ -83,7 +85,7 @@ footer{
 main{
     height: 100%;
     width: 550px;
-    background-color: #f0f0f0;
+    background-color: #f3f3f3;
     padding-top: 20px;
 }
 

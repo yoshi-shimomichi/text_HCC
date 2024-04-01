@@ -1,0 +1,20 @@
+<footer>
+  <div class='container footer_list'>
+    <%= link_to '/', class: 'footer_item' do %>
+      <i class="fas fa-home"></i>
+      トップページ
+    <% end %>
+    <%= link_to page_path("how_to"), class: 'footer_item' do %>
+      <i class="fas fa-book"></i>
+      使い方
+    <% end %>
+    <%= link_to new_user_path, class: 'footer_item' do %>
+      <i class="fas fa-user-plus"></i>
+      ユーザー登録
+    <% end %>
+    <%= link_to login_path, class: 'footer_item' do %>
+        <i class="fas fa-sign-in-alt"></i>
+        <%= t('header.login') %>
+      <% end %>
+  </div>
+</footer>

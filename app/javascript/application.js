@@ -10,3 +10,7 @@ import "./custom/preview"
 import "./custom/autocomplete/@hotwired--stimulus"
 import "./custom/autocomplete/jquery"
 import "./custom/autocomplete/stimulus-autocomplete"
+
+$(function(){
+    $('.alart').fadeOut(1000);  //４秒かけて消えていく
+  });
