@@ -37,6 +37,11 @@ header{
     color: white;
 }
 
+.app_title {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
+}
+
 .header_search{
     display: inline-block;
 }
@@ -86,14 +91,26 @@ main{
     height: 100%;
     width: 550px;
     background-color: #f3f3f3;
-    padding-top: 20px;
+}
+
+.main_content{
+    padding: 20px 5px;
+}
+
+.top_title{
+    background-color: #B2FFAB;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
 }
 
 .post_content{
     color: #c0c0c0;
     background-color: white;
     border-radius: 10px;
-    margin: 15px 5px;
+    margin-bottom: 15px;
     padding: 10px 20px;
     font-size: 14px;
 }
@@ -119,6 +136,44 @@ main{
     height: 50px;
     margin-right: 5px;
 }
+
+.btn_submit{
+    text-align: center;
+    padding: 0 100px;
+}
+
+.btn_text{
+    background-color: #64ff56;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    padding: 5px 50px;
+    border: #000 1px solid;
+    border-radius: 5px;
+}
+
+.btn_text:hover{
+    background-color: #64ff56;
+    color: #fff;
+    opacity: 0.7;
+}
+
+.policy_content{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 .preview-image{

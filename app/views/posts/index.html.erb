@@ -1,8 +1,11 @@
-
+<div class="top_title">
+  トップページ
+</div>
+<div class="main_content">
   <% if @posts.present? %>
     <%= render @posts %>
   <% else %>
     <p><%= t('posts.index.no_result') %></p>
   <% end %>
   <%= paginate @posts, theme: 'bootstrap-5' %>
-
+</div>

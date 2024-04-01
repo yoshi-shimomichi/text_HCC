@@ -1,8 +1,8 @@
 <% content_for(:title, t('.title')) %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-auto">
-      <h1><%= t('users.new.title') %></h1>
+  <div class="top_title">
+    <%= t('users.new.title') %>
+  </div>
+  <div class="main_content">
       <%= form_with model: @user , local: true do |f| %>
         <%= render 'shared/error_messages' , object: f.object %>
         <div class="mb-3">
@@ -25,10 +25,12 @@
           <%= c.hidden_field :age %>
           <%= c.hidden_field :bio %>
         <% end %>
-        <%= f.submit t('helpers.submit.create') , class: 'btn btn-primary' %>
+        <div class="btn_submit">
+        <%= f.submit t('helpers.submit.create') , class: 'btn btn_text' %>
+        </div>
       <% end %>
+    <div class="policy_content">
+      <%= link_to '利用規約', page_path("term_of_service"), class:'link-dark text-decoration-none' %>
+      <%= link_to 'プライバシーポリシー', page_path("privacy_policy"), class:'link-dark text-decoration-none' %>
     </div>
-    <%= link_to '利用規約', page_path("term_of_service"), class:'link-dark text-decoration-none' %>
-    <%= link_to 'プライバシーポリシー', page_path("privacy_policy"), class:'link-dark text-decoration-none' %>
-  </div>
 </div>
