@@ -1,9 +1,9 @@
 <% content_for(:title, t('.title')) %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-auto">
-      <h1><%= t('.title') %></h1>
-      <%= form_with url: login_path, local: true do |f| %>
+  <div class="top_title">
+    <%= t('.title') %>
+  </div>
+  <div class="main_content">
+    <%= form_with url: login_path, local: true do |f| %>
         <div class="mb-3">
           <%= f.label :email %>
           <%= f.text_field :email, class: 'form-control' %>
@@ -12,13 +12,12 @@
           <%= f.label :password %>
           <%= f.password_field :password, class: 'form-control' %>
         </div>
-        <%= f.submit t('.login'), class: 'btn btn-primary' %>
+        <div class="btn_submit">
+        <%= f.submit t('.login') , class: 'btn btn_text' %>
+        </div>
       <% end %>
-      <div class='text-center'>
-        <%# <%= link_to t('user_sessions.new.password_forget'), new_password_reset_path %>
-        <%= link_to '利用規約', page_path("term_of_service"), class:'link-dark text-decoration-none' %>
-        <%= link_to 'プライバシーポリシー', page_path("privacy_policy"), class:'link-dark text-decoration-none' %>
-      </div>
+    <div class="policy_content">
+      <%= link_to '利用規約', page_path("term_of_service"), class:'link-dark text-decoration-none' %>
+      <%= link_to 'プライバシーポリシー', page_path("privacy_policy"), class:'link-dark text-decoration-none' %>
     </div>
-  </div>
 </div>
