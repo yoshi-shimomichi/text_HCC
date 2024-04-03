@@ -1,29 +1,41 @@
 <%= form_with model: @post, id: 'new_post' do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="mb-3">
-      <div>
-        <%= f.label :post_type, class: 'col-3'%><span class="required"><%= t('default.required') %></span>
-      </div>
+    <div class="post_radio">
+      <span>
+        <%= f.label :post_type, class: 'form_label'%>（必須）
+      </span>
+      <span class="post_radio_button">
       <%= f.radio_button :post_type, :question %>
       <%= f.label :post_type_question, "質問" %>
       <%= f.radio_button :post_type, :tweet %>
       <%= f.label :post_type_tweet, "つぶやき" %>
-      <%= f.submit '投稿', class: "btn btn-primary float-end" %>
+      </span>
     </div>
     <div class="mb-3">
-      <%= f.label :body, class: 'col-2'%><span class="required"><%= t('default.required') %></span>      
-      <%= f.text_area :body, class: "form-control", row: "10", style: "height: 200px" %>
+      <%= f.label :body, class: 'form_label'%>（必須）
+      <%= f.text_area :body, class: "form-control", rows: "8" %>
     </div>
+    <div class="post_form_image mb-3">
+    <label class="form_image_button">
+        <i class="fas fa-images"></i>
+        <p>画像を追加する</p>
+        <%= f.file_field :post_image, class: "hidden", id: 'post_prev', accept: 'image/*' %>
+        <%= f.hidden_field :post_image_cache %>
+        </label>
+        <span id="image_prev"></span>
+        <%= image_tag post.post_image.url, id: 'edit_image_prev' if post.post_image.present? %>
+    </div>
+
     <div class="mb-3">
-      <%= f.label :name %><span style='font-size : 12px'>（複数つける場合はスペースで区切ってください）</span>
+      <%= f.label :name, class: 'form_label'%><span style='font-size : 12px'>（複数つける場合はスペースで区切ってください）</span>
       <%= f.text_field :name, value: @tag_list, class: 'form-control'%>
     </div>
-    <div class="mb-3">
-      <%= f.label :post_image %>
-      <p><%= f.check_box :remove_post_image %>画像を削除する</p>
-      <%= f.file_field :post_image, class: "form-control mb-3", id: 'post_prev', accept: 'image/*' %>
-      <%= f.hidden_field :post_image_cache %>
+
+
+    <div class="btn_submit">
+      <%= f.submit t('helpers.submit.submit') , class: 'btn btn_text' %>
     </div>
+    <%#= <p><%= f.check_box :remove_post_image 画像を削除する</p>%>
     <div id="image_prev"></div>
 <% end %>
-<%= image_tag post.post_image.url, id: 'edit_image_prev' if post.post_image.present? %>
+

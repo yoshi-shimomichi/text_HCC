@@ -117,7 +117,7 @@ ja:
       title: 投稿一覧
       no_result: 掲示板がありません
     new:
-      title: 新規投稿作成
+      title: 投稿作成
     create:
       success: 投稿しました
       failure: 投稿出来ませんでした

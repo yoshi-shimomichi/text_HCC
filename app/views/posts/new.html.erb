@@ -1,5 +1,7 @@
 <% content_for(:title, t('.title')) %>
-<div class="container">
-      <h1><%= t('.title') %></h1>
+<div class="top_title">
+  <%= t('.title') %>
+</div>
+<div class="main_content">
       <%= render '/posts/form', post: @post %>
 </div>
