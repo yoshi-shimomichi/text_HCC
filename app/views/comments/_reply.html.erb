@@ -1,29 +1,39 @@
-<div class="card mb-3 mx-5 float-end" id="comment-<%= reply.id %>">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <%= image_tag reply.user.avatar.url, width: '50', height: '50'  %>
-    <div class="col">
-      <ul class="list-inline">
-        <li><%= reply.user.name %></li>
-        <li><%= l reply.created_at, format: :short %></li>
-      </ul>
+<div class="show_reply" id="comment-<%= reply.id %>">
+  <div class="show_post_header">
+    <div>
+      <%= image_tag reply.user.avatar.url, class: 'post_user_image' %>
+      <%= reply.user.name %>
     </div>
+    <div>
+      <%= l reply.created_at, format: :default %>
+    </div>
+  </div>
+  <div class="show_comment_body">
+    <%= raw Rinku.auto_link(simple_format(h(reply.body)), :urls, 'target="_black"') %>
+    <% if reply.comment_image.present? %>
+      <%= link_to reply.comment_image.url, "data-lightbox": reply.comment_image do %>
+        <div class="comment_show_image">
+          <%= image_tag reply.comment_image.to_s %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="show_comment_footer">
+    <div>
     <% if current_user&.own?(reply) %>
-      <div class="text-end">
-        <%= link_to edit_post_comment_path(reply.post, reply), class: 'edit-comment-link' do %>
-          <div class="btn btn-success btn-sm"><%= t('helpers.submit.edit') %></div>
-        <% end %>
-        <%= link_to t('helpers.submit.delete'),
-                post_comment_path(reply.post, reply),
-                class: 'btn btn-danger btn-sm',
-                data: { turbo_method: :delete, 
-                turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
-      </div>
+      <%= link_to t('helpers.submit.edit'), edit_post_comment_path(reply.post, reply), class: 'btn_show_text fas fa-edit' %>
+      <%= link_to t('helpers.submit.delete'),
+                  post_comment_path(reply.post, reply),
+                  class: 'btn_show_text fas fa-trash-alt',
+                  data: { turbo_method: :delete, 
+                  turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
     <% else %>
       <%= render 'comment_favorites/comment_favorite_buttons', { comment: reply } %>
     <% end %>
-  </div>
-  <div class="card-body mb-1">
-    <%= simple_format(reply.body) %>
-    <%= image_tag reply.comment_image.url, width: '100' if reply.comment_image.present? %>
+    </div>
   </div>
 </div>
+
+
+
+

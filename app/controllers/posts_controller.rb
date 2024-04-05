@@ -11,6 +11,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
       @comment  = Comment.new
       @comments = @post.comments.includes(:user).where(parent_id: nil)
+      @comments_count = @post.comments.includes(:user).count
     end
   
     def new

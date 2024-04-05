@@ -2,12 +2,12 @@
   <% if !comment.parent_id %>
     <div class="show_comment" id="comment-<%= comment.id %>">
       <div class="show_post_header">
-        <div class="show_post_header_left">
+        <div>
           <%= image_tag comment.user.avatar.url, class: 'post_user_image' %>
           <%= comment.user.name %>
         </div>
-        <div class="show_post_header_right">
-          <%= l @post.created_at, format: :default %>
+        <div>
+          <%= l comment.created_at, format: :default %>
         </div>
       </div>
       <div class="show_comment_body">
@@ -41,9 +41,12 @@
       </div>
     </div>
   <% end %>
+
   <% if comment.replies.any?%>
     <% comment.replies.each do |reply| %>
       <%= render partial: 'comments/reply', locals: { reply: reply } %>
     <% end %>
   <% end %>
+
+
 <% end %>
