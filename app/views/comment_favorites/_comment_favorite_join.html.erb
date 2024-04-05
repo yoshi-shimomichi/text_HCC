@@ -1,3 +1,3 @@
-<%= link_to comment_favorites_path(comment_id: comment.id), id: "favorite-button-for-comment-#{comment.id}", data: { turbo_method: :post } do %>
-  <i class="far fa-star"></i>
+<%= link_to comment_favorites_path(comment_id: comment.id), class: "btn_show_text", id: "favorite-button-for-comment-#{comment.id}", data: { turbo_method: :post } do %>
+  <i class="far fa-star">お気に入り登録</i>
 <% end %>

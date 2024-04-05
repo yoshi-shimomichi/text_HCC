@@ -1,7 +1,6 @@
-<div class='ms-auto'>
+
   <% if current_user.favorite_comment?(comment) %>
     <%= render 'comment_favorites/comment_favorite_remove', { comment: comment } %>
   <% else %>
     <%= render 'comment_favorites/comment_favorite_join', { comment: comment } %>
   <% end %>
-</div>
