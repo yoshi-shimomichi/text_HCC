@@ -1,54 +1,63 @@
 <% content_for(:title, t('.title')) %>
-<div class="container">
-  <div class="card mb-5">
-    <div class="card-header d-flex">
-      <div class="mx-1">
-        <%= image_tag @post.user.avatar.url, class: 'post_index_image' %>
+<div class="top_title">
+  <% if @post.question? %>
+    <%= @post.post_type_i18n %><%= t('.title') %>
+  <% else %>
+    <%= @post.post_type_i18n %><%= t('.title') %>
+  <% end %>
+</div>
+<div class="main_content">
+  <div class="show_post">
+    <div class="show_post_header">
+      <div class="show_post_header_left">
+        <%= image_tag @post.user.avatar.url, class: 'post_user_image' %>
+        <%= @post.user.name %>
       </div>
-      <div class="col-2 mx-1">
-        <ul class="list-inline">
-          <li><%= @post.user.name %></li>
-          <li><%= l @post.created_at, format: :short %></li>
-        </ul>
+      <div class="show_post_header_right">
+        <%= l @post.created_at, format: :default %>
       </div>
-      <div class="col">
-        <% if @post.question? %>
-          <span class="post_type_question"><%= @post.post_type_i18n %></span>
-        <% else %>
-          <span class="post_type_tweet"><%= @post.post_type_i18n %></span>
-        <% end %>
-      </div>
-      <% if logged_in? %>
-        <% if current_user&.own?(@post) %>
-          <div class="float-end">
-            <%= link_to t('helpers.submit.edit'), edit_post_path(@post), class: 'btn btn-success btn-sm' %>
-            <%= link_to t('helpers.submit.delete'),
-                      post_path(@post),
-                      class: 'btn btn-danger btn-sm',
-                      data: { turbo_method: :delete, 
-                      turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
+    </div>
+    <div class="show_post_body">
+      <%= raw Rinku.auto_link(simple_format(h(@post.body)), :urls, 'target="_black"') %>
+      <% if @post.post_image.present? %>
+        <%= link_to @post.post_image.url, "data-lightbox": @post.post_image do %>
+          <div class="post_show_image">
+            <%= image_tag @post.post_image.to_s %>
           </div>
-        <% else %>
-          <%= render 'post_favorites/post_favorite_buttons', { post: @post } %>
         <% end %>
       <% end %>
     </div>
-    <div class="card-body mb-1">
-      <%= raw Rinku.auto_link(simple_format(h(@post.body)), :urls, 'target="_black"') %>
+    <div class="post_tag_list fas fa-tags">
+        <% if @post.tags.present? %> 
+        <% @post.tags.each do |tag| %>
+          <span class="post_tag"><%= tag.name %></span>
+        <% end %>
+      <% end %>
     </div>
-    <% if @post.post_image.present? %>
-      <%= link_to @post.post_image.url, "data-lightbox": @post.post_image do %>
-        <%= image_tag @post.post_image.to_s, class: 'post_show_image' %>
+    <div class="show_post_footer">
+    <% if logged_in? %>
+      <% if current_user&.own?(@post) %>
+          <%= link_to t('helpers.submit.edit'), edit_post_path(@post), class: 'btn_show_text fas fa-edit' %>
+          <%= link_to t('helpers.submit.delete'),
+                  post_path(@post),
+                  class: 'btn_show_text fas fa-trash-alt',
+                  data: { turbo_method: :delete, 
+                  turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
+      <% else %>
+        <%= render 'post_favorites/post_favorite_buttons', { post: @post } %>
       <% end %>
     <% end %>
-    <div class="card-footer">
-      <% if @post.tags.present? %> 
-        <% @post.tags.each do |tag| %>
-          <span class="badge rounded-pill bg-primary text-white"><%= tag.name %></span>
-        <% end %>
-      <% end %>
     </div>
   </div>
+
+
+  
+<div>
+
+
+
+
+
   <div class="card">
     <div class="card-header">
       コメント

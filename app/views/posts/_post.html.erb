@@ -15,7 +15,7 @@
         <%= image_tag post.post_image.url, class: 'post_index_image' %>
     <% end %>
   </div>
-  <div class="post_tag_list fas fa-tags">
+  <div class="fas fa-tags">
     <% if post.tags.present? %> 
       <% post.tags.each do |tag| %>
         <span class="post_tag"><%= tag.name %></span>

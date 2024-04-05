@@ -159,3 +159,6 @@ ja:
       title: プライバシーポリシー
     term_of_service:
       title: 利用規約
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"

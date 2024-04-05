@@ -190,7 +190,7 @@ main{
 .form_image_button{
     width: 100px;
     height: 100px;
-    border: 1px solid #64ff56;
+    border: 1px solid #f3f3f3;
     border-radius: 10px;
     background-color: white;
     display: flex;
@@ -218,6 +218,79 @@ main{
     gap: 10px
 }
 
+.show_post{
+    border: 1px solid #c0c0c0;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 15px 15px;
+    font-size: 12px;
+}
+
+.show_post_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.post_user_image{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.show_post_body{
+    padding: 0 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.post_tag_list{
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.post_show_image{
+    text-align: center;
+}
+
+.post_show_image img{
+    width: 150px;
+    
+}
+
+
+.btn_show_text{
+    padding: 5px 20px;
+    background-color: #B2FFAB;
+    border: #000 1px solid;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    font-weight: lighter;
+}
+
+.show_post_footer{
+    display: flex;
+    gap: 10px;
+    padding-left: 10px;
+}
+
+.fas fa-star{
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -230,12 +303,6 @@ main{
 .preview-image{
     width: 300px;
     height: 300px;
-}
-
-.post_show_image{
-    width: auto;
-    max-height: 100px;
-    object-fit: contain;
 }
 
 .required{
