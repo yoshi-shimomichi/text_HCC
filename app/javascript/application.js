@@ -10,18 +10,4 @@ import "./custom/preview"
 import "./custom/autocomplete/@hotwired--stimulus"
 import "./custom/autocomplete/jquery"
 import "./custom/autocomplete/stimulus-autocomplete"
-
-$(function(){
-    $('.alart').fadeOut(1000);  //４秒かけて消えていく
-  });
-
-  $(window).on('scroll', function() {
-    scrollHeight = $(document).height();
-    scrollPosition = $(window).height() + $(window).scrollTop();
-    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-            $('.jscroll').jscroll({
-              contentSelector: '.skill-list',
-              nextSelector: 'span.next:last a'
-            });
-    }
-  });
+import "./custom/profile"

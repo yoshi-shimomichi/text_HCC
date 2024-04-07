@@ -1,7 +1,13 @@
 class ProfilesController < ApplicationController
     before_action :set_user, only: %i[edit update]
   
-    def show; end
+    def show
+      @questions = Post.where(user_id: current_user.id, post_type: :question)
+      @tweets = Post.where(user_id: current_user.id, post_type: :tweet)
+      @comments = Comment.where(user_id: current_user.id)
+      @favorite_posts = current_user.favorite_posts.includes(:user).order(created_at: :desc)
+      @favorite_comments = current_user.favorite_comments.includes(:user).order(created_at: :desc)
+    end
   
     def edit; end
   

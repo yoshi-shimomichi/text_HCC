@@ -1,41 +1,69 @@
 <% content_for(:title, t('.title')) %>
-<div class="container pt-3">
-  <div class="row">
-    <div class="col-2">
-      <%= render 'shared/sideber' %>
-    </div>
-    <div class="col-9">
-      <div class="container pt-3">
-        <div class="row">
-          <div class="col-md-10 offset-md-1">
-            <h1 class="float-left mb-5"><%= t('.title') %></h1>
-            <div class="row mb-3">
-              <div class="col-4 mb-3">
-                <%= image_tag current_user.avatar_url, size: '150x150' %>
-              </div>
-              <div class="col">
-                <div class="col-6 mb-3">
-                  <%= t(User.human_attribute_name(:name)) %>
-                  <span class="bg-body-secondary"><%= current_user.name %></span>
-                </div>
-                <div class="col">
-                  <%= t(User.human_attribute_name(:email)) %>
-                  <span class="bg-body-secondary"><%= current_user.email %></span>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <%= t(User.human_attribute_name(:bio)) %>
-                <div class="border bio bg-body-secondary">
-                  <%= current_user.bio %>
-                  
-                </div>
-              </div>
-            </div>
-            <%= link_to t('helpers.submit.edit'), edit_profile_path, class: 'btn btn-primary float-end' %>
-          </div>
-        </div>
-        <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete },class: 'link-dark text-decoration-none' %>
-      </div>
-    </div>
+<div class="profile_top_title">
+  マイページ
+  <div class="btn_top_right">
+  <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete },class: 'btn_top_text fas fa-sign-out-alt ' %>
   </div>
 </div>
+  <div class="profile_show">
+    <div class="profile_show_header">
+      <div>
+        <%= image_tag current_user.avatar_url %>
+        <%= current_user.name %>
+      </div>
+      <div>
+        <%= link_to t('helpers.submit.edit'), edit_profile_path, class: 'btn_show_text fas fa-edit' %>
+      </div>
+    </div>
+    <div class="profile_show_bio">
+      <%= raw Rinku.auto_link(simple_format(h(current_user.bio)), :urls, 'target="_black"') %>
+    </div>
+    <nav class="profile_show_nav">
+      <ul>
+        <li id="nav_questions"><p>質問</p></li>
+        <li id="nav_tweets"><p>つぶやき</p></li>
+        <li id="nav_comments"><p>コメント</p></li>
+        <li id="nav_favorite_posts"><p>お気に入り投稿</p></li>
+        <li id="nav_favorite_comments"><p>お気に入りコメント</p></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="main_content">
+    <div id="profile_questions", class="select_post">
+      <% if @questions.present? %>
+        <%= render 'profiles/profile_post', { posts: @questions } %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
+    <div id="profile_tweets", class="select_post", style="display: none;">
+      <% if @tweets.present? %>
+        <%= render 'profiles/profile_post', { posts: @tweets } %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
+    <div id="profile_comments", class="select_post", style="display: none;">
+      <% if @comments.present? %>
+        <%= render 'profiles/profile_comment', {comments: @comments} %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
+    <div id="profile_favorite_posts", class="select_post", style="display: none;">
+      <% if @favorite_posts.present? %>
+        <%= render 'profiles/profile_post', { posts: @favorite_posts } %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
+    <div id="profile_favorite_comments", class="select_post", style="display: none;">
+      <% if @favorite_comments.present? %>
+        <%= render 'profiles/profile_comment', { comments: @favorite_comments } %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
+
+  </div>
+  
