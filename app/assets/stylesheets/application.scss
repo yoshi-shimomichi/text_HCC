@@ -142,6 +142,7 @@ main{
 .btn_submit{
     text-align: center;
     padding: 0 100px;
+    position: relative;
 }
 
 .btn_text{
@@ -157,6 +158,21 @@ main{
     background-color: #64ff56;
     opacity: 1.2;
 }
+
+.btn_cancel{
+    position: absolute;
+    top: 0%;
+    left: 5%;
+}
+
+.btn_cancel_text{
+    text-decoration: none;
+    background-color: #64ff56;
+    padding: 5px 20px;
+    border: #000 1px solid;
+    border-radius: 5px;
+}
+
 
 .policy_content{
     display: flex;
@@ -397,21 +413,6 @@ main{
     font-size: 12px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .profile_show_post{
     border: 1px solid #c0c0c0;
     background-color: white;
@@ -430,6 +431,9 @@ main{
     margin-bottom: 5px;
 }
 
+#edit_post_image{
+    width: 100px;
+}
 
 
 
@@ -453,11 +457,6 @@ main{
     border-radius: 5px;
 }
 
-#edit_image_prev{
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-}
 
 .bio{
     min-height: 100px;

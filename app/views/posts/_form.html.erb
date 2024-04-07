@@ -23,10 +23,10 @@
         <%= f.hidden_field :post_image_cache %>
         </label>
         <span id="image_prev"></span>
-        <%= image_tag post.post_image.url, id: 'edit_image_prev' if post.post_image.present? %>
+        <%= image_tag post.post_image.url, id: 'edit_post_image' if post.post_image.present? %>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-5">
       <%= f.label :name, class: 'form_label'%><span style='font-size : 12px'>（複数つける場合はスペースで区切ってください）</span>
       <%= f.text_field :name, value: @tag_list, class: 'form-control'%>
     </div>
@@ -34,8 +34,10 @@
 
     <div class="btn_submit">
       <%= f.submit t('helpers.submit.submit') , class: 'btn btn_text' %>
+      <div class="btn_cancel">
+        <%= link_to "戻る", :back, class: "btn btn_cancel_text" %>
+      </div>
     </div>
     <%#= <p><%= f.check_box :remove_post_image 画像を削除する</p>%>
-    <div id="image_prev"></div>
 <% end %>
 
