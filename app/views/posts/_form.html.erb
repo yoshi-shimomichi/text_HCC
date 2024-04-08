@@ -16,12 +16,12 @@
       <%= f.text_area :body, class: "form-control", rows: "8" %>
     </div>
     <div class="post_form_image mb-3">
-    <label class="form_image_button">
+      <label class="form_image_button">
         <i class="fas fa-images"></i>
         <p>画像を追加する</p>
-        <%= f.file_field :post_image, class: "hidden", id: 'post_prev', accept: 'image/*' %>
+        <%= f.file_field :post_image, class: "hidden", id: 'select_image', accept: 'image/*' %>
         <%= f.hidden_field :post_image_cache %>
-        </label>
+      </label>
         <span id="image_prev"></span>
         <%= image_tag post.post_image.url, id: 'edit_post_image' if post.post_image.present? %>
     </div>

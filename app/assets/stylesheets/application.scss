@@ -435,19 +435,45 @@ main{
     width: 100px;
 }
 
-
-
-
-
-
-
-
-
-
-.preview-image{
-    width: 300px;
-    height: 300px;
+.profile_edit_image{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
+
+.profile_edit_image label{
+    cursor: pointer;
+}
+
+.profile_edit_image img{
+    width: 150px;
+}
+
+.profile_edit_image #image_prev img{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .required{
     background-color: #ee3333;
@@ -458,12 +484,9 @@ main{
 }
 
 
-.bio{
-    min-height: 100px;
-}
 
 #image_prev img{
-    width: 100px;
+    max-width: 100px;
     max-height: 100px;
 }
 
