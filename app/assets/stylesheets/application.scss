@@ -283,6 +283,7 @@ main{
 
 .show_post_footer{
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     padding-left: 10px;
 }
@@ -493,9 +494,19 @@ main{
     font-size: 12px;
 }
 
+.preview_btn i{
+    color: red;
+    cursor: pointer;
+}
 
+.edit_preview_btn i{
+    color: red;
+    cursor: pointer;
+}
 
-
+.preview{
+    display: flex;
+}
 
 
 

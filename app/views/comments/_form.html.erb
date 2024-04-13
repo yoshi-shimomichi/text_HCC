@@ -1,18 +1,21 @@
-<div class="row mb-3" id="comment-form">
+<div id="comment_form">
   <%= form_with model: [post, comment] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="mb-3">
-      <%= f.text_area :body, class: 'form-control mb-3' %>
-        <div class="row d-flex justify-content-between">
-          <div class="col">
-            <%= f.file_field :comment_image, class: "form-control mb-3", accept: 'image/*' %>
-            <%= f.hidden_field :comment_image_cache %>
-          </div>
-          <div class="col-2">
-            <%= f.submit t('helpers.submit.comment'), class: 'btn btn-primary' %>
-          </div>
-        </div>
-      <% end %>
+      <%= f.text_area :body, class: 'form-control mb-3', rows: "3"%>
+      <div class="post_form_image mb-3">
+        <label class="form_image_button">
+          <i class="fas fa-images"></i>
+          <p>画像を追加する</p>
+          <%= f.file_field :comment_image, class: "hidden", id: 'select_image', accept: 'image/*' %>
+          <%= f.hidden_field :comment_image_cache %>
+        </label>
+        <span id="image_prev"></span>
+        <%= image_tag comment.comment_image.url, id: 'edit_post_image' if comment.comment_image.present? %>
+      </div>
+      <div class="btn_submit">
+        <%= f.submit t('helpers.submit.comment'), class: 'btn btn_text' %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

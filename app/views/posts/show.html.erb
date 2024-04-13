@@ -51,10 +51,12 @@
   </div>
   <% if logged_in? %>
     <p><%= @comments_count %>件のコメント<p>
-    <%= render "comments/comment", post: @post %> 
+    <div id="comment_list">
+      <%= render "comments/comment", post: @post %>
+    </div>
+    <%= render 'comments/form',post: @post, comment: @comment %>
   <% else %>
     <p class="text-center"> コメントはログイン後に閲覧できます</p>
   <% end %>
 </div>
 
-<%= render 'comments/form',post: @post, comment: @comment %>

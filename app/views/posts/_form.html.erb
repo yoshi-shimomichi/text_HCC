@@ -1,4 +1,4 @@
-<%= form_with model: @post, id: 'new_post' do |f| %>
+<%= form_with model: @post, id: 'post_form' do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="post_radio">
       <span>
@@ -22,22 +22,22 @@
         <%= f.file_field :post_image, class: "hidden", id: 'select_image', accept: 'image/*' %>
         <%= f.hidden_field :post_image_cache %>
       </label>
-        <span id="image_prev"></span>
-        <%= image_tag post.post_image.url, id: 'edit_post_image' if post.post_image.present? %>
+      <div id="image_prev"></div>
+      <% if post.post_image.present? %>
+        <%= image_tag post.post_image.url, id: 'edit_post_image' %>
+        <div class="preview_btn"><i class="far fa-times-circle"></i></div>          <%= f.hidden_field :remove_post_image, id:'remove_image', value: false%>
+      <% end %>
     </div>
-
     <div class="mb-5">
       <%= f.label :name, class: 'form_label'%><span style='font-size : 12px'>（複数つける場合はスペースで区切ってください）</span>
       <%= f.text_field :name, value: @tag_list, class: 'form-control'%>
     </div>
-
-
     <div class="btn_submit">
       <%= f.submit t('helpers.submit.submit') , class: 'btn btn_text' %>
       <div class="btn_cancel">
         <%= link_to "戻る", :back, class: "btn btn_cancel_text" %>
       </div>
     </div>
-    <%#= <p><%= f.check_box :remove_post_image 画像を削除する</p>%>
+    
 <% end %>
 
