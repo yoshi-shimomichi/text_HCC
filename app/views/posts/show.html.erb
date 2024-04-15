@@ -36,6 +36,7 @@
     </div>
     <div class="show_post_footer">
     <% if logged_in? %>
+      <div>
       <% if current_user&.own?(@post) %>
           <%= link_to t('helpers.submit.edit'), edit_post_path(@post), class: 'btn_show_text fas fa-edit' %>
           <%= link_to t('helpers.submit.delete'),
@@ -46,15 +47,21 @@
       <% else %>
         <%= render 'post_favorites/post_favorite_buttons', { post: @post } %>
       <% end %>
+      </div>
+      <div>
+        <button id="new_comment_btn", class="btn_show_text fas fa-comment">コメント</button>
+      </div>
     <% end %>
     </div>
   </div>
   <% if logged_in? %>
+    <div id="comment_form_for_posts", style= "display: none;">
+      <%= render 'comments/form',post: @post, comment: @comment %>
+    </div>
     <p><%= @comments_count %>件のコメント<p>
     <div id="comment_list">
       <%= render "comments/comment", post: @post %>
     </div>
-    <%= render 'comments/form',post: @post, comment: @comment %>
   <% else %>
     <p class="text-center"> コメントはログイン後に閲覧できます</p>
   <% end %>

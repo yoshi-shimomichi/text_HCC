@@ -508,6 +508,21 @@ main{
     display: flex;
 }
 
+#comment_form{
+    border: 1px #c0c0c0 solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+#cancel_comment_btn{
+    text-decoration: none;
+    background-color: #B2FFAB;
+    padding: 5px 10px;
+    border: #000 1px solid;
+    border-radius: 5px;
+}
+
 
 
 
