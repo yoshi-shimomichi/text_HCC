@@ -10,37 +10,52 @@
           <%= l comment.created_at, format: :default %>
         </div>
       </div>
-      <div class="show_comment_body">
-        <%= raw Rinku.auto_link(simple_format(h(comment.body)), :urls, 'target="_black"') %>
-        <% if comment.comment_image.present? %>
-          <%= link_to comment.comment_image.url, "data-lightbox": comment.comment_image do %>
-            <div class="comment_show_image">
-              <%= image_tag comment.comment_image.to_s %>
-            </div>
+
+      <div id="show-comment-<%= comment.id %>">
+
+        <div class="show_comment_body">
+          <%= raw Rinku.auto_link(simple_format(h(comment.body)), :urls, 'target="_black"') %>
+          <% if comment.comment_image.present? %>
+            <%= link_to comment.comment_image.url, "data-lightbox": comment.comment_image do %>
+              <div class="comment_show_image">
+                <%= image_tag comment.comment_image.to_s %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-      <div class="show_comment_footer">
-        <div>
-        <% if logged_in? %>
-          <% if current_user&.own?(comment) %>
-            <%= link_to t('helpers.submit.edit'), edit_post_comment_path(comment.post, comment), class: 'btn_show_text fas fa-edit' %>
-            <%= link_to t('helpers.submit.delete'),
-                    post_comment_path(comment.post, comment),
-                    class: 'btn_show_text fas fa-trash-alt',
-                    data: { turbo_method: :delete, 
-                    turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
-          <% else %>
-            <%= render 'comment_favorites/comment_favorite_buttons', { comment: comment } %>
-          <% end %>
+        </div>
+        <div class="show_comment_footer">
+          <div>
+          <% if logged_in? %>
+            <% if current_user&.own?(comment) %>
+              <button class="btn_show_text fas fa-edit edit-comment-btn" data-comment-id="<%= comment.id %>">
+                <%= t('helpers.submit.edit') %>
+              </button>
+              <%= link_to t('helpers.submit.delete'),
+                      post_comment_path(comment.post, comment),
+                      class: 'btn_show_text fas fa-trash-alt',
+                      data: { turbo_method: :delete, 
+                      turbo_confirm: t('helpers.submit.delete_comfirm') }  %>
+            <% else %>
+              <%= render 'comment_favorites/comment_favorite_buttons', { comment: comment } %>
+            <% end %>
           </div>
           <div>
-            <%= link_to t('helpers.submit.reply'), new_post_comment_path(post, comment, parent_id: comment.id), class: 'btn_show_text fas fa-comment float-end' %>
+            <button class="btn_show_text fas fa-comment reply_comment_btn">返信</button>
           </div>
-        <% end %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div id="edit-comment-<%= comment.id %>", class="edit-comment-form", style="display: none;">
+        <%= render 'comments/form_edit',post: @post, comment: comment %>
       </div>
     </div>
   <% end %>
+  <div id="reply-comment-<%= comment.id %>" class="reply-comment-form", style="display: none;">
+    <%= render 'comments/form_reply',post: @post, comment_reply: @comment_reply, comment_parent_id: comment.id %>
+  </div>
+
 
   <% if comment.replies.any?%>
     <% comment.replies.each do |reply| %>

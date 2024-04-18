@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     def show
       @post = Post.find(params[:id])
       @comment  = Comment.new
+      @comment_reply = Comment.new
       @comments = @post.comments.includes(:user).where(parent_id: nil)
       @comments_count = @post.comments.includes(:user).count
     end

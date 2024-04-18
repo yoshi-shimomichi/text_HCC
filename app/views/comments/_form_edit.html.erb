@@ -1,15 +1,30 @@
-<%= form_with model:[@comment.post, @comment], local: true do |f|%>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="mb-3">
-    <%= f.label :body, class: "mb-1" %><span class="required"><%= t('default.required') %></span>
-    <%= f.text_area :body, class:"form-control", rows:'3' %>
+<div id="comment_form">
+
+<%= form_with(model: [post, comment], local: true, method: :patch) do |f|%>
+  <div class="mb-2">
+  <%= f.text_area :body, class: 'form-control mb-2 comment_text_form' %>
+  <div class="post_form_image mb-2">
+    <label class="form_image_button">
+      <i class="fas fa-images"></i>
+      <p>画像を追加する</p>
+      <%= f.file_field :comment_image, class: "hidden", id: 'select_image', accept: 'image/*' %>
+      <%= f.hidden_field :comment_image_cache %>
+    </label>
+    <span id="image_prev"></span>
+    <% if comment.comment_image.present? %>
+      <%= image_tag comment.comment_image.url, id: 'edit_image' %>
+      <div class="preview_btn"><i class="far fa-times-circle"></i></div>          
+      <%= f.hidden_field :remove_post_image, id:'remove_image', value: false%>
+    <% end %>
   </div>
-  <div class="mb-3">
-    <%= f.file_field :comment_image, class: "form-control mb-3", accept: 'image/*' %>
-    <%= f.hidden_field :comment_image_cache %>
+  <div class="btn_submit">
+    <%= f.submit t('helpers.submit.update'), class: 'btn btn_show_text' %>
+    <div class="btn_cancel">
+      <button id="cancel_comment_update_btn", class="btn btn_cancel_text" data-comment-id="<%= comment.id %>">キャンセル</button>
+    </div>
   </div>
-  <div class="flex justify-end text-xs mt-1">
-    <%= link_to t('helpers.submit.cancel'), post_path(@comment.post), class: 'btn' %>
-    <%= f.submit t('helpers.submit.update'), class:"ml-2 btn btn-primary faort-end" %>
-  </div>
+</div>
 <% end %>
+
+
+</div>

@@ -1,3 +1,6 @@
+
+
+
 <div class="show_reply" id="comment-<%= reply.id %>">
   <div class="show_post_header">
     <div>
@@ -8,6 +11,10 @@
       <%= l reply.created_at, format: :default %>
     </div>
   </div>
+
+  <div id="show-comment-<%= reply.id %>">
+
+
   <div class="show_comment_body">
     <%= raw Rinku.auto_link(simple_format(h(reply.body)), :urls, 'target="_black"') %>
     <% if reply.comment_image.present? %>
@@ -21,8 +28,10 @@
   <div class="show_comment_footer">
     <div>
     <% if current_user&.own?(reply) %>
-      <%= link_to t('helpers.submit.edit'), edit_post_comment_path(reply.post, reply), class: 'btn_show_text fas fa-edit' %>
-      <%= link_to t('helpers.submit.delete'),
+      <button class="btn_show_text fas fa-edit edit-comment-btn" data-comment-id="<%= reply.id %>">
+        <%= t('helpers.submit.edit') %>
+      </button>
+        <%= link_to t('helpers.submit.delete'),
                   post_comment_path(reply.post, reply),
                   class: 'btn_show_text fas fa-trash-alt',
                   data: { turbo_method: :delete, 
@@ -31,7 +40,13 @@
       <%= render 'comment_favorites/comment_favorite_buttons', { comment: reply } %>
     <% end %>
     </div>
+
   </div>
+  </div>
+  <div id="edit-comment-<%= reply.id %>", class="edit-comment-form", style="display: none;">
+    <%= render 'comments/form_edit',post: @post, comment: reply %>
+</div>
+  
 </div>
 
 

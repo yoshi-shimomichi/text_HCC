@@ -1,6 +1,6 @@
  // プレビュー表示機能は新規投稿("/new/")か投稿編集("/edit/")ページでのみ有効にする
- if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
-  document.addEventListener('DOMContentLoaded', function(){
+  //document.addEventListener('DOMContentLoaded', function(){
+    window.addEventListener('load', function() {
     // プレビューを表示するための要素を取得
     const ImageList = document.getElementById('image_prev');
 
@@ -20,22 +20,26 @@
        deleteButton.classList.add('preview_btn');
 
       imageElement.appendChild(blobImage);
-//      if (blobImage.src || document.querySelector('#edit_post_image')) {
-        imageElement.appendChild(deleteButton); // 削除ボタンを画像要素の隣に追加
-//      }
+      imageElement.appendChild(deleteButton); // 削除ボタンを画像要素の隣に追加
+
       ImageList.appendChild(imageElement);
     };
-
+    
+    if (document.getElementById('select_image')) {
     document.getElementById('select_image').addEventListener('change', function(e){
       // 画像が表示されている場合のみ、すでに存在している画像を削除する（編集ページ用）
-      const imageContent = document.querySelector('img');
-      const deleteBtn = document.querySelector('.preview_btn');
+      const imageContent = document.querySelector('.preview');
+      const editImageContent = document.querySelector('#edit_image');
+      const deleteButton = document.querySelector('.preview_btn');
+      
       if (imageContent) {
         imageContent.remove();
-        if (deleteBtn) {
-          deleteBtn.remove();
-        }
       }
+      if (editImageContent) {
+        editImageContent.remove();
+        deleteButton.remove();
+      }
+  
 
       // 発火したイベントeの中の、targetの中の、filesという配列に格納された画像を変数に代入
       const file = e.target.files[0];
@@ -44,8 +48,11 @@
 
       createImageHTML(blob);
     });
+  }
+  
   });
-}
+
+//}
 
 $(document).on("click", '.preview_btn', function() {
     // フォームに画像を削除するためのフラグを設定する

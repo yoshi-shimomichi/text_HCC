@@ -18,14 +18,15 @@
     <div class="post_form_image mb-3">
       <label class="form_image_button">
         <i class="fas fa-images"></i>
-        <p>画像を追加する</p>
+        <p>画像の追加・変更</p>
         <%= f.file_field :post_image, class: "hidden", id: 'select_image', accept: 'image/*' %>
         <%= f.hidden_field :post_image_cache %>
       </label>
       <div id="image_prev"></div>
       <% if post.post_image.present? %>
-        <%= image_tag post.post_image.url, id: 'edit_post_image' %>
-        <div class="preview_btn"><i class="far fa-times-circle"></i></div>          <%= f.hidden_field :remove_post_image, id:'remove_image', value: false%>
+        <%= image_tag post.post_image.url, id: 'edit_image' %>
+        <div class="preview_btn"><i class="far fa-times-circle"></i></div>          
+        <%= f.hidden_field :remove_post_image, id:'remove_image', value: false%>
       <% end %>
     </div>
     <div class="mb-5">

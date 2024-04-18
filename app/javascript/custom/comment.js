@@ -1,37 +1,56 @@
 $(document).on("click", '#new_comment_btn', function() {
-    $('#comment_form_for_posts').show();
+  $('.reply-comment-form').hide();
+  $('.edit-comment-form').hide();
+  $('#comment_form_for_posts').show();
 });
 
-$(document).on("click", '#cancel_comment_btn', function() {
+$(document).on("click", '#cancel_comment_btn', function(event) {
+  event.preventDefault(); // デフォルトの送信動作をキャンセル
   $('#comment_form_for_posts').hide();
 });
 
-/*
-<button id="new_comment_btn", class="btn btn_text">コメント</button>
 
-<div id="comment_form_for_posts", style= "display: none;">
-<%= render 'comments/form',post: @post, comment: @comment %>
-</div>
 
-<div id="comment_form">
-  <%= form_with model: [post, comment] do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="mb-3">
-      <%= f.text_area :body, class: 'form-control mb-3', rows: "3"%>
-      <div class="post_form_image mb-3">
-        <label class="form_image_button">
-          <i class="fas fa-images"></i>
-          <p>画像を追加する</p>
-          <%= f.file_field :comment_image, class: "hidden", id: 'select_image', accept: 'image/*' %>
-          <%= f.hidden_field :comment_image_cache %>
-        </label>
-        <span id="image_prev"></span>
-        <%= image_tag comment.comment_image.url, id: 'edit_post_image' if comment.comment_image.present? %>
-      </div>
-      <div class="btn_submit">
-        <%= f.submit t('helpers.submit.comment'), class: 'btn btn_text' %>
-      </div>
-    </div>
-  <% end %>
-</div>
-*/
+$(document).on("click", ".edit-comment-btn", function () {
+  $('.reply-comment-form').hide();
+  $('.edit-comment-form').hide();
+  const commentId = $(this).data('comment-id');
+  const commentShow = $('#show-comment-' + commentId);
+  const commentEdit = $('#edit-comment-' + commentId);
+
+  commentShow.hide();
+  commentEdit.show();
+
+});
+
+$(document).on("click", '#cancel_comment_update_btn', function(event) {
+  event.preventDefault(); // デフォルトの送信動作をキャンセル
+
+  const commentId = $(this).data('comment-id');
+  const commentShow = $('#show-comment-' + commentId);
+  const commentEdit = $('#edit-comment-' + commentId);
+
+  commentShow.show();
+  commentEdit.hide();
+});
+
+
+
+$(document).on("click", '.reply_comment_btn', function() {
+  const commentId = $(this).closest('.show_comment').attr('id').split('-')[1];
+  const commentReply = $('#reply-comment-' + commentId);
+
+  // 他の返信フォームを非表示にする
+  $('.reply-comment-form').hide();
+  
+  // 対応する返信フォームを表示する
+  commentReply.show();
+});
+
+$(document).on("click", '#cancel_comment_reply_btn', function(event) {
+  event.preventDefault(); // デフォルトの送信動作をキャンセル
+
+  // 対応する返信フォームを表示する
+  $('.reply-comment-form').hide();
+});
+

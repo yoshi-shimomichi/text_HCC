@@ -1,16 +1,7 @@
 class CommentsController < ApplicationController
-    before_action :set_comment, only: %i[edit update destroy]
-    before_action :set_post, only: %i[create edit update destroy]
+    before_action :set_comment, only: %i[update destroy]
+    before_action :set_post, only: %i[create update destroy]
   
-    def new
-      @post = Post.find(params[:post_id])
-      @comment = Comment.find(params[:parent_id])
-      @comment_reply = Comment.new
-  
-      @comment_reply.user_id = current_user.id
-      @comment_reply.post = @post
-      @comment_reply.parent_id = @comment.id
-    end
   
     def create
       @comment = current_user.comments.build(comment_params)
@@ -26,14 +17,10 @@ class CommentsController < ApplicationController
         redirect_to post_path(@post)
       end
     end
-  
-    def edit; end
-  
+
     def update
       if @comment.update(comment_params)
         redirect_to post_path(@comment.post_id), success: t('.success', item: Comment.model_name.human)
-      else
-        render :edit, status: :unprocessable_entity
       end
     end
   
@@ -41,31 +28,6 @@ class CommentsController < ApplicationController
       @comment.destroy!
     end
   
-    def reply_new
-      @post = Post.find(params[:post_id])
-      @comment = Comment.find(params[:parent_id])
-      @comment_reply = Comment.new
-  
-      @comment_reply.user_id = current_user.id
-      @comment_reply.post = @post
-      @comment_reply.parent_id = @comment.id
-    end
-  
-    def reply_create
-      @post = Post.find(params[:post_id])
-      @comment = @post.comments
-      @comment_reply = @comment.new(comment_params)
-  
-      @comment_reply.user_id = current_user.id
-      @comment_reply.post = @post
-      @comment_reply.parent_id = @comment.id
-      
-      if @comment_reply.save
-        redirect_to post_path(@post)
-      else
-        render :new
-      end
-    end
       
     private
   
